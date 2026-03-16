@@ -811,6 +811,18 @@ TOTAL FITUR : ${TOTAL}
           );
         }
         break;
+        case "saldo": {
+          
+          m.reply(`
+          💰 SALDO USER
+          
+          Balance : ${user.balance}
+          Level   : ${user.level}
+          Exp     : ${user.exp}
+          `)
+          
+          }
+          break
       
       case "cekidch":
         {
