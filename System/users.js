@@ -27,7 +27,12 @@ function saveDB() {
   fs.writeFileSync(path, JSON.stringify(db, null, 2));
 }
 
+function loadDB() {
+  db = JSON.parse(fs.readFileSync(path));
+}
+
 module.exports = {
   getUser,
   saveDB,
+  loadDB,
 };
