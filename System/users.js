@@ -4,7 +4,7 @@ const path = "./data/users.json";
 
 let db = JSON.parse(fs.readFileSync(path));
 
-function getUser(id) {
+function createUser(id) {
   if (!db[id]) {
     db[id] = {
       id: id,
@@ -36,10 +36,14 @@ function addBalance(id, amount) {
   user.balance += amount;
   saveDB();
 }
+function getUser(id) {
+  return db[id] || null;
+}
 
 module.exports = {
   getUser,
   saveDB,
   loadDB,
   addBalance,
+  createUser
 };
