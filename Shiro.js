@@ -38,6 +38,7 @@ const moment = require("moment-timezone");
 const { spawn, exec } = require("child_process");
 const babel = require("@babel/core");
 const yts = require("yt-search");
+const { getUser } = require("./System/users");
 
 // Message utilities
 const {
@@ -220,6 +221,9 @@ module.exports = Shiro = async (Shiro, m, chatUpdate, store) => {
       const p = participants.find((p) => p.jid === m.sender);
       return p?.lid || null;
     })();
+
+
+    let user = getUser(m.sender);
 
     //
     const reply = (teks) => {
@@ -807,6 +811,7 @@ TOTAL FITUR : ${TOTAL}
           );
         }
         break;
+      
       case "cekidch":
         {
           if (!text)
