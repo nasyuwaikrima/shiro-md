@@ -31,8 +31,15 @@ function loadDB() {
   db = JSON.parse(fs.readFileSync(path));
 }
 
+function addBalance(id, amount) {
+  let user = getUser(id);
+  user.balance += amount;
+  saveDB();
+}
+
 module.exports = {
   getUser,
   saveDB,
   loadDB,
+  addBalance,
 };
