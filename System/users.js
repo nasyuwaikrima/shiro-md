@@ -1,6 +1,9 @@
 const fs = require("fs");
 
 const path = "./data/users.json";
+if (!fs.existsSync(path)) {
+    fs.writeFileSync(path, "{}")
+}
 
 let db = JSON.parse(fs.readFileSync(path));
 
