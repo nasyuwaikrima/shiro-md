@@ -539,21 +539,25 @@ TOTAL FITUR : ${TOTAL}`;
     }
 
     const isOwnerAlert = (teks) => {
-      replyy(teks, "https://files.catbox.moe/i5djoy", 'Featured Khusus owner');
+      replyy(teks, "https://files.catbox.moe/i5djoy", "👑 OWNER ACCESS ONLY");
     }
-
     const procsalert = (text) => {
-      replyy(text, "https://files.catbox.moe/hfsd1x", 'Processing...');
+      replyy(text, "https://files.catbox.moe/hfsd1x", "⏳ PROCESSING REQUEST");
     }
-
-
     const queryAlert = (text) => {
-      replyy(text,  'https://files.catbox.moe/gnszki', 'Query Diperlukan!')
+      replyy(text, "https://files.catbox.moe/gnszki", "⚠️ INPUT REQUIRED");
+    }
+    const isPremAlert = (text) => {
+      replyy(text, "https://files.catbox.moe/7ollwi", "💎 PREMIUM FEATURE");
     }
 
-    const isPremAlert = (text) => {
-      replyy(text, "https://files.catbox.moe/7ollwi", 'Featured Khusus Premium');
-    }
+    const template = `
+    
+┎━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
+┃
+┃
+┖━━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
+`;
 
     // =============== COMMAND HANDLER ===============
     switch (command) {
