@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const path = "./Database/users.json";
+const path = "./data/users.json";
 
 let db = JSON.parse(fs.readFileSync(path));
 

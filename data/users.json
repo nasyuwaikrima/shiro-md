@@ -1,1 +1,22 @@
-[]
+{
+  "6285801010923@s.whatsapp.net": {
+    "id": "6285801010923@s.whatsapp.net",
+    "exp": 0,
+    "level": 1,
+    "balance": 99999999999999,
+    "limit": 10,
+    "premium": false,
+    "registered": true,
+    "joinDate": 1773679671166
+  },
+  "120363426933574258@newsletter": {
+    "id": "120363426933574258@newsletter",
+    "exp": 0,
+    "level": 1,
+    "balance": 0,
+    "limit": 10,
+    "premium": false,
+    "registered": true,
+    "joinDate": 1773679719165
+  }
+}
