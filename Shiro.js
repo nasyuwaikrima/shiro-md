@@ -1,6 +1,6 @@
 console.clear();
 require("./config");
-const { description, version, name, main } = require("./package.json");
+const { description, version, name, main, author } = require("./package.json");
 const {
   default: baileys,
   downloadContentFromMessage,
@@ -194,6 +194,7 @@ module.exports = Shiro = async (Shiro, m, chatUpdate, store) => {
       ? await Shiro.groupMetadata(m.chat).catch(() => ({}))
       : {};
     const groupName = m?.isGroup ? groupMetadata.subject || "" : "";
+    const dev = author
     const participants = m?.isGroup
       ? groupMetadata.participants?.map((p) => {
           let admin = null;
@@ -917,6 +918,7 @@ TOTAL FITUR : ${TOTAL}
 ┃
 ┃  ◉ Nama Bot  : ${name}
 ┃  ◉ Version   : ${version}
+┃  ◉ Developer : ${dev}
 ┃  ◉ Runtime   : ${runtime(process.uptime())}
 ┃  ◉ Feature   : ${TOTAL} command
 ┃  ◉ Type      : CJS & ESM
