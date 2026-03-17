@@ -899,19 +899,17 @@ TOTAL FITUR : ${TOTAL}
                   : "ɴɪᴋᴍᴀᴛɪ ᴍᴀʟᴀᴍᴍᴜ ◉";
 
           const text = `
-  ${greeting}, ${name} ✦
+  ${greeting}, ${pushname} ✦
   ${mood}
 
 ┎━━◈ ·「 ɪɴꜰᴏ ᴜꜱᴇʀ 」· ━━━━◈
 ┃
-┃  ◉ Nama     : 
-┃  ◉ ID       : 
-┃  ◉ Saldo    : 
-┃  ◉ Level    : 
-┃  ◉ Exp      : 
-┃  ◉ Limit    : 
-┃  ◉ Device   : 
-┃  ◉ Tanggal  : 
+┃  ◉ Nama     : ${pushname}
+┃  ◉ Saldo    : ${user.balance}
+┃  ◉ Level    : ${user.level}
+┃  ◉ Exp      : ${user.exp}
+┃  ◉ Limit    : ${user.limit}
+┃  ◉ Tanggal  : ${date}
 ┃
 ┖━━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
 
