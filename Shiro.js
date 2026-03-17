@@ -38,7 +38,7 @@ const moment = require("moment-timezone");
 const { spawn, exec } = require("child_process");
 const babel = require("@babel/core");
 const yts = require("yt-search");
-const { getUser, addBalance, loadDB, createUser } = require("./System/users");
+const { getUser, addBalance, loadDB, createUser, kurangiLimit } = require("./System/users");
 
 // Message utilities
 const {

@@ -63,6 +63,7 @@ module.exports = {
   loadDB,
   addBalance,
   createUser,
+  kurangiLimit
 };
 
 fs.watchFile(path, () => {
