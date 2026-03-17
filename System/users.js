@@ -14,7 +14,7 @@ function createUser(id) {
       exp: 0,
       level: 1,
       balance: 0,
-      limit: 10,
+      limit: 20,
       premium: false,
       registered: true,
       joinDate: Date.now(),
@@ -43,6 +43,18 @@ function addBalance(id, amount) {
 function getUser(id) {
   loadDB();
   return db[id] || null;
+}
+
+function kurangiLimit(id, amount = 1) {
+  loadDB()
+
+  let user = createUser(id)
+  if (user.limit < amount) return false
+
+  user.limit -= amount
+
+  saveDB()
+  return true
 }
 
 module.exports = {
