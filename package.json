@@ -5,7 +5,7 @@
   "main": "connect.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node utama.js"
+    "start": "node index.js"
   },
   "author": "Kyzo Yamada",
   "license": "MIT",

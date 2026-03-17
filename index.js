@@ -1,5 +1,5 @@
 console.clear();
-require("./config");
+require("./config.js");
 const { description, version, name, main } = require("./package.json");
 const {
   default: makeWASocket,
@@ -151,7 +151,7 @@ async function connectToWhatsApp() {
         return;
       if (mek.key.id.startsWith("BAE5") && mek.key.id.length === 16) return;
       let m = smsg(Shiro, mek, store);
-      require("./Shiro")(Shiro, m, chatUpdate, store);
+      require("./Shiro.js")(Shiro, m, chatUpdate, store);
     } catch (error) {
       console.error("Error processing message upsert:", error);
     }
@@ -192,7 +192,7 @@ async function connectToWhatsApp() {
     return buffer;
   };
 
-  const GroupParticipants = require("./Library/participants");
+  const GroupParticipants = require("./Library/participants.js");
 
   Shiro.ev.on("group-participants.update", async (m) => {
     await GroupParticipants(Shiro, m);
