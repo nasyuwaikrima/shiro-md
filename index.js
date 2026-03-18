@@ -107,6 +107,7 @@ async function connectToWhatsApp() {
     },
   });
 
+
   if (!Shiro.authState.creds.registered) {
     const phoneNumber = await question(
       chalk.blue(`Enter Your Number\nYour Number: `),

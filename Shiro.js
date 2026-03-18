@@ -27,6 +27,12 @@ const {
   getStream,
   templateMessage,
 } = require("@whiskeysockets/baileys");
+const {
+  isOwnerAlert,
+  procsalert,
+  queryAlert,
+  isPremAlert,
+} = require("./Library/alert");
 
 const fs = require("fs");
 const util = require("util");
@@ -38,7 +44,13 @@ const moment = require("moment-timezone");
 const { spawn, exec } = require("child_process");
 const babel = require("@babel/core");
 const yts = require("yt-search");
-const { getUser, addBalance, loadDB, createUser, kurangiLimit } = require("./System/users");
+const {
+  getUser,
+  addBalance,
+  loadDB,
+  createUser,
+  kurangiLimit,
+} = require("./System/users");
 
 // Message utilities
 const {
@@ -58,6 +70,8 @@ const {
   getGroupAdm,
   generateProfilePicture,
 } = require("./System/message");
+
+const replyy = require("./Library/replyy");
 
 // Config files
 const {
@@ -194,7 +208,7 @@ module.exports = Shiro = async (Shiro, m, chatUpdate, store) => {
       ? await Shiro.groupMetadata(m.chat).catch(() => ({}))
       : {};
     const groupName = m?.isGroup ? groupMetadata.subject || "" : "";
-    const dev = author
+    const dev = author;
     const participants = m?.isGroup
       ? groupMetadata.participants?.map((p) => {
           let admin = null;
@@ -222,7 +236,6 @@ module.exports = Shiro = async (Shiro, m, chatUpdate, store) => {
       const p = participants.find((p) => p.jid === m.sender);
       return p?.lid || null;
     })();
-
 
     let user = getUser(m.sender);
     if (!user) {
@@ -521,43 +534,6 @@ CJS  : ${CJS}
 TOTAL FITUR : ${TOTAL}`;
     }
 
-    function replyy(txt, thumbnail, title) {
-      const shiro = {
-        contextInfo: {
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterName: `Information ${name}`,
-            newsletterJid: global.idch,
-          },
-          externalAdReply: {
-            showAdAttribution: false,
-            title: title,
-            body: "",
-            thumbnailUrl: thumbnail,
-            sourceUrl: global.website,
-          },
-        },
-        text: txt,
-      };
-      return Shiro.sendMessage(m.chat, shiro, {
-        quoted: m,
-      });
-    }
-
-    const isOwnerAlert = (teks) => {
-      replyy(teks, "https://files.catbox.moe/i5djoy", "👑 OWNER ACCESS ONLY");
-    }
-    const procsalert = (text) => {
-      replyy(text, "https://files.catbox.moe/hfsd1x", "⏳ PROCESSING REQUEST");
-    }
-    const queryAlert = (text) => {
-      replyy(text, "https://files.catbox.moe/gnszki", "⚠️ INPUT REQUIRED");
-    }
-    const isPremAlert = (text) => {
-      replyy(text, "https://files.catbox.moe/7ollwi", "💎 PREMIUM FEATURE");
-    }
-
     const template = `
     
 ┎━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
@@ -565,6 +541,8 @@ TOTAL FITUR : ${TOTAL}`;
 ┃
 ┖━━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
 `;
+
+    const thumbnail = "https://i.ibb.co.com/ZRLdWCnJ/IMG-20260316-WA0023.jpg";
 
     // =============== COMMAND HANDLER ===============
     switch (command) {
@@ -814,19 +792,18 @@ TOTAL FITUR : ${TOTAL}
           );
         }
         break;
-        case "saldo": {
-          
+      case "saldo":
+        {
           m.reply(`
           💰 SALDO USER
           
           Balance : ${user.balance}
           Level   : ${user.level}
           Exp     : ${user.exp}
-          `)
-          
-          }
-          break
-      
+          `);
+        }
+        break;
+
       case "cekidch":
         {
           if (!text)
@@ -871,6 +848,7 @@ TOTAL FITUR : ${TOTAL}
         break;
       case "menu":
         {
+          replyy("helo", "yyyy");
           const CASE = countCase("./Shiro.js");
           const ESM = countFiles("./Plugins-ESM");
           const CJS = countFiles("./Plugins-CJS");
@@ -1005,14 +983,112 @@ TOTAL FITUR : ${TOTAL}
           });
         }
         break;
-      case "test":  {
-        if (!text) {
-          isOwnerAlert("anda bukan owner!!");
-          isPremAlert('maaf fitur ini khusus premium')
-          procsalert('loading, seedang di prosess')
-          queryAlert('mohon sertakan teks contoh .test cuyy')
-      }
-        
+
+      case "tes":
+        {
+          async function getBuffer(url) {
+            const res = await axios.get(url, { responseType: "arraybuffer" });
+            return res.data;
+          }
+          const thumbImage = await getBuffer(
+            "https://i.ibb.co.com/ZRLdWCnJ/IMG-20260316-WA0023.jpg",
+          );
+          const thumsnya = thumbImage;
+          let buttons = [
+            {
+              buttonId: ".rules",
+              buttonText: {
+                displayText: "ʀᴜʟᴇs | ᴍᴇɴᴜ",
+              },
+            },
+            {
+              buttonId: ".sewa",
+              buttonText: {
+                displayText: "sᴇᴡᴀ | ғᴜʀɪɴᴀ-ᴍᴅ",
+              },
+            },
+          ];
+          let buttonMessage = {
+            document: {
+              url: `https://files.catbox.moe/l6uxfw.jpg`,
+            },
+            mimetype: "image/png",
+            fileName: ucapanWaktu,
+            fileLength: 99999,
+            pageCount: 99999,
+            jpegThumbnail: thumbImage,
+            caption: "halo",
+            footer: `© ${global.namaown}`,
+            contextInfo: {
+              forwardingScore: 999,
+              isForwarded: true,
+              externalAdReply: {
+                title: name,
+                body: name,
+                thumbnail: thumsnya,
+                mediaType: 1,
+                renderLargerThumbnail: true,
+                previewType: 0,
+
+                mediaUrl:
+                  "https://whatsapp.com/channel/0029VbCOHOTJENy0bNYsiT46",
+                sourceUrl:
+                  "https://whatsapp.com/channel/0029VbCOHOTJENy0bNYsiT46",
+              },
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: global.idch,
+                newsletterName: `Furina`,
+              },
+            },
+            buttons: buttons,
+            viewOnce: true,
+            headerType: 8,
+          };
+          const flowActions = [
+            {
+              buttonId: "action",
+              buttonText: {
+                displayText: "This Button List",
+              },
+              type: 4,
+              nativeFlowInfo: {
+                name: "single_select",
+                paramsJson: JSON.stringify({
+                  title: "� sᴇʟᴇᴄᴛ ᴍᴇɴᴜ",
+                  sections: [
+                    {
+                      title: `ʟɪsᴛ ʏᴀɴɢ sᴇʀɪɴɢ ᴅɪᴘᴀᴋᴀɪ`,
+                      highlight_label: `.ᴘᴏᴘᴜʟᴇʀ`,
+                      rows: [
+                        {
+                          header: "� ��� ����",
+                          title: "�ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ sᴇᴍᴜᴀ ᴍᴇɴᴜ",
+                          id: `.allmenu`,
+                        },
+                      ],
+                    },
+                  ],
+                }),
+              },
+              viewOnce: true,
+            },
+          ];
+          buttonMessage.buttons.push(...flowActions);
+          await Shiro.sendMessage(m.chat, buttonMessage, {
+            quoted: m,
+          });
+        }
+        break;
+
+      case "test":
+        {
+          if (!text) {
+            isOwnerAlert("anda bukan owner!!");
+            isPremAlert("maaf fitur ini khusus premium");
+            procsalert("loading, seedang di prosess");
+            queryAlert("mohon sertakan teks contoh .test cuyy");
+          }
+
           const Akame = {
             contextInfo: {
               forwardingScore: 999,
@@ -1193,6 +1269,7 @@ TOTAL FITUR : ${TOTAL}
           );
         }
         break;
+
       case "menu-lama":
         {
           const CASE = countCase("./Shiro.js");
@@ -1568,7 +1645,6 @@ Contoh:
           if (!quoted)
             return reply("Reply media (foto/video/file) yang mau di upload!");
           let mime = quoted.mimetype || "";
-         
 
           reply("⏳ Uploading ke semua platform...");
 
