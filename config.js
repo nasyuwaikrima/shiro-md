@@ -5,6 +5,7 @@ global.namaown = "nasyuwa"
 global.idch = "120363426852106510@newsletter";
 global.prefa = ['','!','.',',','🐤','🗿'] // Prefix // Not Change
 global.thumbnail = "https://lunara.drizznesiasite.biz.id/f/ApAdiHpYChQf.jpg"
+global.website = ''
 
 global.welcome = true
 global.goodbye = true

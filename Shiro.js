@@ -27,12 +27,6 @@ const {
   getStream,
   templateMessage,
 } = require("@whiskeysockets/baileys");
-const {
-  isOwnerAlert,
-  procsalert,
-  queryAlert,
-  isPremAlert,
-} = require("./Library/alert");
 
 const fs = require("fs");
 const util = require("util");
@@ -51,6 +45,8 @@ const {
   createUser,
   kurangiLimit,
 } = require("./System/users");
+
+const { AlertMessage } = require("./Library/alertMessage");
 
 // Message utilities
 const {
@@ -146,6 +142,8 @@ module.exports = Shiro = async (Shiro, m, chatUpdate, store) => {
     const from = m.key.remoteJid;
     const isGroup = from.endsWith("@g.us");
     const isPrivate = from.endsWith("@s.whatsapp.net");
+
+    const alert = new AlertMessage(Shiro, m);
 
     const premium = JSON.parse(fs.readFileSync("./data/premium.json"));
     const kontributor = JSON.parse(fs.readFileSync("./data/owner.json"));
@@ -592,6 +590,8 @@ TOTAL FITUR : ${TOTAL}
       case "pings":
         {
           let start = Date.now();
+
+          replyy(Shiro, m, "telolet", "tomplekelet");
 
           await sock.sendMessage(
             m.chat,
@@ -1082,13 +1082,13 @@ TOTAL FITUR : ${TOTAL}
 
       case "test":
         {
-          if (!text) {
-            isOwnerAlert("anda bukan owner!!");
-            isPremAlert("maaf fitur ini khusus premium");
-            procsalert("loading, seedang di prosess");
-            queryAlert("mohon sertakan teks contoh .test cuyy");
-          }
+          alert.ownerAccesAlert("halo bang");
 
+          alert.premiumAlert("helloo premium alert");
+
+          alert.queryAlert("cuyyi query mana");
+
+          alert.proccessAlert("sedang diproses bang tunggu sebentar");
           const Akame = {
             contextInfo: {
               forwardingScore: 999,

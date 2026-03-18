@@ -1,0 +1,26 @@
+require('../config')
+const name = require('../package.json')
+
+module.exports = (Shiro, m, title, text, thumbnail) => {
+  const shirow = {
+    contextInfo: {
+      forwardingScore: 999,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterName: name,
+        newsletterJid: global.idch,
+      },
+      externalAdReply: {
+        showAdAttribution: false,
+        title: title,
+        body: "",
+        thumbnailUrl: thumbnail,
+        sourceUrl: global.website,
+      },
+    },
+    text: text,
+  };
+  return Shiro.sendMessage(m.chat, shirow, {
+    quoted: m,
+  });
+};
