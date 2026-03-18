@@ -540,6 +540,12 @@ TOTAL FITUR : ${TOTAL}`;
 ┖━━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
 `;
 
+    if (!Shirodev && !isPremium) {
+      if (!kurangiLimit(m.sender, 1)) {
+        return alert.premiumAlert("Limit habis");
+      }
+    }
+
     const thumbnail = "https://i.ibb.co.com/ZRLdWCnJ/IMG-20260316-WA0023.jpg";
 
     // =============== COMMAND HANDLER ===============
@@ -848,7 +854,6 @@ TOTAL FITUR : ${TOTAL}
         break;
       case "menu":
         {
-          replyy("helo", "yyyy");
           const CASE = countCase("./Shiro.js");
           const ESM = countFiles("./Plugins-ESM");
           const CJS = countFiles("./Plugins-CJS");
@@ -1082,34 +1087,16 @@ TOTAL FITUR : ${TOTAL}
 
       case "test":
         {
-          alert.ownerAccesAlert("halo bang");
-
-          alert.premiumAlert("helloo premium alert");
-
-          alert.queryAlert("cuyyi query mana");
-
-          alert.proccessAlert("sedang diproses bang tunggu sebentar");
-          const Akame = {
-            contextInfo: {
-              forwardingScore: 999,
-              isForwarded: true,
-              forwardedNewsletterMessageInfo: {
-                newsletterName: `Information With`,
-                newsletterJid: `120363405649403674@newsletter`,
-              },
-              externalAdReply: {
-                showAdAttribution: false,
-                title: `-  AI`,
-                body: "",
-                thumbnailUrl: `https://i.ibb.co.com/ZRLdWCnJ/IMG-20260316-WA0023.jpg`,
-                sourceUrl: global.website,
-              },
-            },
-            text: text,
-          };
-          return Shiro.sendMessage(m.chat, Akame, {
-            quoted: m,
-          });
+          alert.limitAlert(`
+┎━━◈ ·「 ʟɪᴍɪᴛ ɪɴꜰᴏ 」· ━━━━◈
+┃
+┃  ◉ Status   : Limit Habis
+┃  ◉ Sisa     : 0
+┃  ◉ Info     : Terlalu sering pakai command
+┃  ◉ Solusi   : Upgrade premium biar ga ke-limit
+┃
+┖━━◇ ⟩ ━━━━━━━ ⟨ ◇━━►
+            `);
         }
         break;
 

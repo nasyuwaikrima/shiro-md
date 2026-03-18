@@ -46,6 +46,7 @@ function getUser(id) {
 }
 
 function kurangiLimit(id, amount = 1) {
+  console.log('kurangi limit')
   loadDB()
 
   let user = createUser(id)

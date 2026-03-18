@@ -29,18 +29,26 @@ class AlertMessage {
   queryAlert(text) {
     return this.sendAlert(
       text,
-      "https://files.catbox.moe/hfsd1x",
-      "⏳ PROCESSING REQUEST",
+      "https://files.catbox.moe/gnszki",
+      "⚠️ INPUT REQUIRED",
     );
   }
 
-    premiumAlert(text) {
-        return this.sendAlert(
-          text,
-          "https://files.catbox.moe/7ollwi",
-          "💎 PREMIUM FEATURE",
-        );
-    }
+  premiumAlert(text) {
+    return this.sendAlert(
+      text,
+      "https://files.catbox.moe/7ollwi",
+      "💎 PREMIUM FEATURE",
+    );
+  }
+
+  limitAlert(text) {
+    return this.sendAlert(
+      text,
+      "https://files.catbox.moe/ge5m7p",
+      "🚫 LIMIT HABIS",
+    );
+  }
 }
 
-module.exports = { AlertMessage }
+module.exports = { AlertMessage };
